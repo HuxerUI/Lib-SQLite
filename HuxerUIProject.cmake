@@ -25,9 +25,8 @@ if (CMAKE_SYSTEM_NAME STREQUAL "Darwin" AND NOT CMAKE_OSX_DEPLOYMENT_TARGET)
     set(CMAKE_OSX_DEPLOYMENT_TARGET "12.0" CACHE STRING "Minimum macOS deployment target" FORCE)
 endif ()
 
-enable_language(CXX)
-
 if (NOT HUXERUI_LIBRARY_GRAPH_ONLY)
+    enable_language(CXX)
     enable_language(C)
     if (APPLE AND NOT IOS AND EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/platform/macos/src")
         enable_language(OBJCXX)

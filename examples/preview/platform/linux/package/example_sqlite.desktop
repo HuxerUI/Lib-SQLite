@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=SQLite Preview
+Exec=example_sqlite
+Icon=example_sqlite
+Categories=Utility;
+Terminal=false
