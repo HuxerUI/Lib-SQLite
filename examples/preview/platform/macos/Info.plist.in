@@ -6,6 +6,8 @@
   <string>SQLite Preview</string>
   <key>CFBundleIdentifier</key>
   <string>org.huxerui.lib.sqlite.preview</string>
+  <key>CFBundleIconFile</key>
+  <string>AppIcon</string>
   <key>CFBundleName</key>
   <string>SQLite Preview</string>
   <key>CFBundlePackageType</key>

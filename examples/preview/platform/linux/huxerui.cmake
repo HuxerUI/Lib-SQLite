@@ -7,6 +7,9 @@ function(huxerui_configure_linux_project_package target_name install_component)
             RUNTIME DESTINATION usr/bin
             COMPONENT "${install_component}"
     )
+    _huxerui_install_runtime_dependencies(${target_name} "${install_component}"
+            usr "bin/$<TARGET_FILE_NAME:${target_name}>"
+    )
     get_target_property(HUXERUI_LINUX_APP_RESOURCES
             ${target_name}
             HUXERUI_RESOURCE_PACKAGE

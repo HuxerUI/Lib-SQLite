@@ -25,6 +25,9 @@ endif ()
 
 if (NOT HUXERUI_LIBRARY_GRAPH_ONLY)
     enable_language(CXX)
+    if (WIN32)
+        enable_language(RC)
+    endif ()
 endif ()
 
 if (NOT TARGET HuxerUI::huxerui)
@@ -88,8 +91,11 @@ function(huxerui_configure_project_app target_name)
         message(FATAL_ERROR "HuxerUI application target is missing its install component: ${target_name}")
     endif ()
 
-    if (WIN32 AND HUXERUI_WINDOWS_MANIFEST)
-        target_sources(${target_name} PRIVATE "${HUXERUI_WINDOWS_MANIFEST}")
+    if (WIN32)
+        target_sources(${target_name} PRIVATE
+                "${HUXERUI_WINDOWS_MANIFEST}"
+                "${HUXERUI_WINDOWS_RESOURCE}"
+        )
     endif ()
     if (WIN32 AND COMMAND huxerui_configure_windows_project_package)
         huxerui_configure_windows_project_package(
