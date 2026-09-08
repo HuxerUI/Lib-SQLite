@@ -66,6 +66,12 @@ huxerui_add_library(huxerui_sqlite
             sqlite
 )
 
+add_library(HuxerUI::SQLite ALIAS huxerui_sqlite)
+
+if (HUXERUI_LIBRARY_GRAPH_ONLY)
+    return()
+endif ()
+
 target_include_directories(huxerui_sqlite PUBLIC
         "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
         "$<INSTALL_INTERFACE:include>"
@@ -88,7 +94,6 @@ if (CMAKE_C_COMPILER_ID MATCHES "GNU|Clang")
             PROPERTIES COMPILE_OPTIONS "-Wno-unused-function"
     )
 endif ()
-add_library(HuxerUI::SQLite ALIAS huxerui_sqlite)
 
 if (CMAKE_SOURCE_DIR STREQUAL PROJECT_SOURCE_DIR)
     set(HUXERUI_SQLITE_BUILD_TESTS_DEFAULT ON)
