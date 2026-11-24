@@ -1,0 +1,40 @@
+[package]
+namespace   = "huxerui"
+name        = "sqlite"
+version     = "0.1.0"
+standard    = "c++23"
+description = "HuxerUI SQLite persistence library with typed records, queries, transactions, and migrations"
+license     = "MIT"
+repo        = "https://github.com/HuxerUI/Lib-SQLite"
+
+[package.metadata.huxerui]
+library   = "HuxerUI::SQLite"
+resources = "resources"
+name      = "sqlite"
+id        = "org.huxerui.sqlite"
+namespace = "huxerui::sqlite"
+
+[dependencies]
+huxerui.huxerui = "0.5.5"
+
+[targets.huxerui_sqlite]
+kind = "lib"
+
+[lib]
+path = "modules/sqlite.cppm"
+
+[build]
+sources = ["src/sqlite_backend.c"]
+include_dirs = ["include", "third_party/sqlite", "src"]
+private_include_dirs = ["third_party/sqlite", "src"]
+defines = [
+    "SQLITE_DEFAULT_FOREIGN_KEYS=1",
+    "SQLITE_DQS=0",
+    "SQLITE_OMIT_DEPRECATED",
+    "SQLITE_OMIT_LOAD_EXTENSION",
+    "SQLITE_THREADSAFE=1",
+]
+cflags = ["-Wno-unused-function"]
+
+[target.'cfg(os = "ios")'.build]
+defines = ["HAVE_GETHOSTUUID=0"]
